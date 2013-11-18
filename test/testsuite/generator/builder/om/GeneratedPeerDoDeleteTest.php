@@ -16,7 +16,7 @@ require_once dirname(__FILE__) . '/../../../../tools/helpers/bookstore/Bookstore
  * This test uses generated Bookstore classes to test the behavior of various
  * peer operations.
  *
- * The database is relaoded before every test and flushed after every test.  This
+ * The database is reloaded before every test and flushed after every test.  This
  * means that you can always rely on the contents of the databases being the same
  * for each test method in this class.  See the BookstoreDataPopulator::populate()
  * method for the exact contents of the database.
@@ -111,7 +111,7 @@ class GeneratedPeerDoDeleteTest extends BookstoreEmptyTestBase
 
     /**
      * Test that cascading deletes are happening correctly for composite pk.
-     * @link       http://propel.phpdb.org/trac/ticket/544
+     * @link       http://trac.propelorm.org/ticket/544
      */
     public function testDoDelete_Cascade_CompositePK()
     {
@@ -274,7 +274,7 @@ class GeneratedPeerDoDeleteTest extends BookstoreEmptyTestBase
         $book = $review->getBook();
         BookPeer::doDeleteAll();
         $this->assertNull(BookPeer::retrieveByPk($book->getId()), 'doDeleteAll invalidates instance pool');
-        $this->assertNull(ReviewPeer::retrieveByPk($review->getId()), 'doDeleteAll invalidates instance pool of releted tables with ON DELETE CASCADE');
+        $this->assertNull(ReviewPeer::retrieveByPk($review->getId()), 'doDeleteAll invalidates instance pool of related tables with ON DELETE CASCADE');
     }
 
     /**
@@ -306,7 +306,7 @@ class GeneratedPeerDoDeleteTest extends BookstoreEmptyTestBase
     }
 
     /**
-     * @link       http://propel.phpdb.org/trac/ticket/519
+     * @link       http://trac.propelorm.org/ticket/519
      */
     public function testDoDeleteCompositePK()
     {
@@ -478,7 +478,7 @@ class GeneratedPeerDoDeleteTest extends BookstoreEmptyTestBase
 
     /**
      * Test doCountJoin*() methods with ORDER BY columns in Criteria.
-     * @link http://propel.phpdb.org/trac/ticket/627
+     * @link http://trac.propelorm.org/ticket/627
      */
     public function testDoCountJoinWithOrderBy()
     {

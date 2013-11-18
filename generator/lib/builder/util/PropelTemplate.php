@@ -22,7 +22,7 @@ class PropelTemplate
     /**
      * Set a string as a template.
      * The string doesn't need closing php tags.
-   *
+     *
      * <code>
      * $template->setTemplate('This is <?php echo $name ?>');
      * </code>
@@ -58,7 +58,7 @@ class PropelTemplate
      * // This is Mike
      * </code>
      *
-     * @param array $vars An associative array of argumens to be rendered
+     * @param array $vars An associative array of arguments to be rendered
      *
      * @return string The rendered template
      *
@@ -67,7 +67,7 @@ class PropelTemplate
      */
     public function render($vars = array())
     {
-      if (null === $this->templateFile && null === $this->template) {
+        if (null === $this->templateFile && null === $this->template) {
             throw new InvalidArgumentException('You must set a template or a template file before rendering');
         }
 

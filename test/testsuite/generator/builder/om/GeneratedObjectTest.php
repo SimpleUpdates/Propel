@@ -18,7 +18,7 @@ require_once dirname(__FILE__) . '/../../../../../generator/lib/util/PropelQuick
  * object operations.  The _idea_ here is to test every possible generated method
  * from Object.tpl; if necessary, bookstore will be expanded to accommodate this.
  *
- * The database is relaoded before every test and flushed after every test.  This
+ * The database is reloaded before every test and flushed after every test.  This
  * means that you can always rely on the contents of the databases being the same
  * for each test method in this class.  See the BookstoreDataPopulator::populate()
  * method for the exact contents of the database.
@@ -104,10 +104,10 @@ class GeneratedObjectTest extends BookstoreTestBase
     /**
      * Tests the use of default expressions and the reloadOnInsert and reloadOnUpdate attributes.
      *
-     * @link       http://propel.phpdb.org/trac/ticket/378
-     * @link       http://propel.phpdb.org/trac/ticket/555
+     * @link       http://trac.propelorm.org/ticket/378
+     * @link       http://trac.propelorm.org/ticket/555
      */
-    public function testDefaultExpresions()
+    public function testDefaultExpressions()
     {
         if (Propel::getDb(BookstoreEmployeePeer::DATABASE_NAME) instanceof DBSqlite) {
             $this->markTestSkipped("Cannot test default expressions with SQLite");
@@ -149,8 +149,8 @@ class GeneratedObjectTest extends BookstoreTestBase
     /**
      * Tests the use of default expressions and the reloadOnInsert attribute.
      *
-     * @link       http://propel.phpdb.org/trac/ticket/378
-     * @link       http://propel.phpdb.org/trac/ticket/555
+     * @link       http://trac.propelorm.org/ticket/378
+     * @link       http://trac.propelorm.org/ticket/555
      */
     public function testDefaultExpresions_ReloadOnInsert()
     {
@@ -189,8 +189,8 @@ class GeneratedObjectTest extends BookstoreTestBase
     /**
      * Tests the overriding reloadOnInsert at runtime.
      *
-     * @link       http://propel.phpdb.org/trac/ticket/378
-     * @link       http://propel.phpdb.org/trac/ticket/555
+     * @link       http://trac.propelorm.org/ticket/378
+     * @link       http://trac.propelorm.org/ticket/555
      */
     public function testDefaultExpresions_ReloadOnInsert_Override()
     {
@@ -228,7 +228,7 @@ class GeneratedObjectTest extends BookstoreTestBase
     /**
      * Tests the use of default expressions and the reloadOnUpdate attribute.
      *
-     * @link       http://propel.phpdb.org/trac/ticket/555
+     * @link       http://trac.propelorm.org/ticket/555
      */
     public function testDefaultExpresions_ReloadOnUpdate()
     {
@@ -254,8 +254,8 @@ class GeneratedObjectTest extends BookstoreTestBase
     /**
      * Tests the overriding reloadOnUpdate at runtime.
      *
-     * @link       http://propel.phpdb.org/trac/ticket/378
-     * @link       http://propel.phpdb.org/trac/ticket/555
+     * @link       http://trac.propelorm.org/ticket/378
+     * @link       http://trac.propelorm.org/ticket/555
      */
     public function testDefaultExpresions_ReloadOnUpdate_Override()
     {
@@ -569,7 +569,7 @@ class GeneratedObjectTest extends BookstoreTestBase
 
     /**
      * Test checking for non-default values.
-     * @see        http://propel.phpdb.org/trac/ticket/331
+     * @see        http://trac.propelorm.org/ticket/331
      */
     public function testHasOnlyDefaultValues()
     {
@@ -647,7 +647,7 @@ class GeneratedObjectTest extends BookstoreTestBase
 
     /**
      * Test copying when an object has composite primary key.
-     * @link http://propel.phpdb.org/trac/ticket/618
+     * @link http://trac.propelorm.org/ticket/618
      */
     public function testCopy_CompositePK()
     {
@@ -740,15 +740,13 @@ class GeneratedObjectTest extends BookstoreTestBase
         $this->assertEquals(1, count($op2->getBook()), 'BookOpinion2 has a relation to the Book');
         $this->assertEquals(1, count($br1->getBookOpinions()), 'BookReader1 has 1 BookOpinion (BookOpinion1)');
         $this->assertEquals(1, count($br2->getBookOpinions()), 'BookReader2 has 1 BookOpinion (BookOpinion2)');
-        
+
         $this->assertFalse($op1->isDeleted(), 'BookOpinion1 think it has not been deleted');
 
         $caughtException = false;
-        try
-        {
+        try {
           $op1->reload(false);  // will fail because won't find the entry in the db
-        } catch (PropelException $pe)
-        {
+        } catch (PropelException $pe) {
           $caughtException = true;
         }
 
@@ -818,7 +816,7 @@ class GeneratedObjectTest extends BookstoreTestBase
         $this->assertEquals(1, BookQuery::create()->count(), '1 Book');
         $this->assertEquals(0, BookOpinionQuery::create()->count(), '0 BookOpinion');
     }
-    
+
     /**
      *
      */
@@ -874,6 +872,13 @@ class GeneratedObjectTest extends BookstoreTestBase
         $this->assertEquals('Don Juan', $arr1['Title'], 'toArray() returns an associative array representation of the object');
     }
 
+    public function testToArrayWithColumn()
+    {
+        $book = BookQuery::create()->withColumn('Title', 'TitleCopy')->findOne();
+        $bookArray = $book->toArray();
+        $this->assertEquals($book->getTitleCopy(), $bookArray['TitleCopy']);
+    }
+
     public function testToArrayKeyType()
     {
         $b = new Book();
@@ -919,7 +924,7 @@ EOF;
 
     /**
      * Test regexp validator for ticket:542
-     * @link       http://propel.phpdb.org/trac/ticket/542
+     * @link       http://trac.propelorm.org/ticket/542
      */
     public function testRegexValidator()
     {
@@ -996,7 +1001,7 @@ EOF;
 
     /**
      * Test foreign key relationships based on references to unique cols but not PK.
-     * @link       http://propel.phpdb.org/trac/ticket/691
+     * @link       http://trac.propelorm.org/ticket/691
      */
     public function testUniqueFkRel()
     {

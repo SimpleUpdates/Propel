@@ -47,6 +47,7 @@ class VendorInfo extends XMLElement
 
     /**
      * Sets up this object based on the attributes that were passed to loadFromXML().
+     *
      * @see        parent::loadFromXML()
      */
     protected function setupObject()
@@ -76,6 +77,7 @@ class VendorInfo extends XMLElement
 
     /**
      * Adds a new vendor parameter to this object.
+     *
      * @param array $attrib Attributes from XML.
      */
     public function addParameter($attrib)
@@ -98,8 +100,9 @@ class VendorInfo extends XMLElement
     /**
      * Gets parameter value.
      *
-     * @param  string $name
-     * @return mixed  Paramter value.
+     * @param string $name
+     *
+     * @return mixed Paramter value.
      */
     public function getParameter($name)
     {
@@ -123,9 +126,9 @@ class VendorInfo extends XMLElement
     }
 
     /**
-     * Sets assoc array of parameters for venfor specific info.
+     * Sets assoc array of parameters for vendor specific info.
      *
-     * @param array $params Paramter data.
+     * @param array $params Parameter data.
      */
     public function setParameters(array $params = array())
     {
@@ -149,12 +152,14 @@ class VendorInfo extends XMLElement
      */
     public function isEmpty()
     {
-     return empty($this->parameters);
+        return empty($this->parameters);
     }
 
     /**
      * Gets a new merged VendorInfo object.
-     * @param  VendorInfo $info
+     *
+     * @param VendorInfo $info
+     *
      * @return VendorInfo new object with merged parameters
      */
     public function getMergedVendorInfo(VendorInfo $merge)
