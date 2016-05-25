@@ -3864,12 +3864,6 @@ abstract class " . $this->getClassname() . " extends " . $parentClass . " ";
         $joinedTableObjectBuilder = $this->getNewObjectBuilder($refFK->getTable());
         $className = $joinedTableObjectBuilder->getObjectClassname();
 
-        if ($tblFK->getChildrenColumn()) {
-            $className = 'Base' . $className;
-            $namespace = $joinedTableObjectBuilder->getNamespace();
-            $this->declareClass($namespace . '\\' . $className);
-        }
-
         $collName = $this->getRefFKCollVarName($refFK);
 
         $scheduledForDeletion = lcfirst($this->getRefFKPhpNameAffix($refFK, $plural = true)) . "ScheduledForDeletion";
