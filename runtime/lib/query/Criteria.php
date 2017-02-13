@@ -1661,7 +1661,9 @@ class Criteria implements IteratorAggregate
         }
 
         // merge alias
-        $commonAliases = array_intersect_key($this->getAliases(), $criteria->getAliases());
+        $commonAliases = array_filter( array_intersect_key( $this->getAliases(), $criteria->getAliases() ), function( $key ) use( $criteria ) {
+            return $this->getAliases()[$key] != $criteria->getAliases()[$key];
+        }, ARRAY_FILTER_USE_KEY );
         if (!empty($commonAliases)) {
             throw new PropelException('The given criteria contains an alias already existing in the current object');
         }
